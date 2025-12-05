@@ -29,4 +29,5 @@ public class SimpleAutoTest {
         open("http://92.51.36.108:7777/sl.qa");
         $("body").shouldHave(text("Промышленные приложения"));
     }
+
 }
