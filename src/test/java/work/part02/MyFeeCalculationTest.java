@@ -12,15 +12,16 @@ public class MyFeeCalculationTest {
     public void testFeeCalculation (){
         open("https://slqa.ru/cases/fc/v01/");
 
-        $(By.name("sum")).sendKeys("1000");
+        //$(By.name("sum")).sendKeys("1000");
+        $("input[name=sum]").sendKeys("1000");
         $(By.name("submit")).click();
         sleep(5000);
-        $(By.name("sum")).setValue("2000");
+        $("input[name=sum]").setValue("2000");
         $(By.name("submit")).click();
         sleep(5000);
-        $(By.name("sum")).type("2000");
+        $("input[name=sum]").type("2000");
         $(By.name("submit")).click();
         sleep(5000);
-        $(By.name("sum")).clear();
+        $("input[name=sum]").clear();
     }
 }
