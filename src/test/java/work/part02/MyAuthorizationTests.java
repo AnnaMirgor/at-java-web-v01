@@ -6,6 +6,7 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -23,25 +24,28 @@ class MyAuthorizationTests {
 
     @Test
     public void test01LoginSuccess() {
-
-        SelenideElement myElement = $("input[name+username]");
-        $(By.id("username")).sendKeys("standard_user");
-        $(By.id("password")).type("stand_pass1");
-        $(By.id("loginButton")).click();
-        $(By.className("greeting")).shouldHave(text("Добро пожаловать, Иванов Иван Иванович!"));
-
+        $("#username").sendKeys("standard_user");
+        $("#password").sendKeys("stand_pass1");
+        $("#loginButton").click();
+        $("#flightForm").shouldBe(visible);
 
     }
 
     @Test
     public void test02LoginWrongPassword() {
+        $(By.id("username")).sendKeys("standard_user");
+        $("#password").sendKeys("stand_pass11");
+        $("#loginButton").click();
+        $("#flightForm").shouldNotBe(visible);
 
-        SelenideElement myElement = $("input[name+username]");
-        $(By.id("username")).setValue("standard_user");
-        $(By.id("password")).setValue("asdfasdfasdfasdfasdf");
-        $(By.id("loginButton")).click();
-        $(By.className("error")).shouldHave(text("Неверное имя пользователя или пароль."));
     }
 
+    @Test
+    public void test03LoginWrongPassword() {
+        $(By.id("username")).sendKeys("standard_user");
+        $("#password").sendKeys("stand_pass11");
+        $("#loginButton").click();
+        $(By.className("error")).shouldBe(visible);
 
+    }
 }
