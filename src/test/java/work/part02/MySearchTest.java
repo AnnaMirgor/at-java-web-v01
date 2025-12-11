@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class MySearchDemoTest {
+public class MySearchTest {
     @Test
     public void testElementSearchMethods (){
         open("https://slqamsk.github.io/demo/search-demo/");
