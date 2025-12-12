@@ -11,20 +11,14 @@ import static org.openqa.selenium.devtools.v131.page.Page.close;
 
 public class GitAutorization {
 
-//    @BeforeEach
-//    public void beforeEach(){
-//        open("https://github.com/login");
-//    }
-
-//    @AfterEach
-//    public void afterEach(){
-//
-//    }
-
+    @BeforeEach
+    public void beforeEach(){
+        open("https://github.com/login");
+    }
 
     @Test
     public void testGit01Success() {
-        open("https://github.com/login");
+
         $("input[name=login]").setValue("AnnaMirgor");
         $("#password").sendKeys("Asd19092000!");
         $(By.className("btn-primary")).click();
@@ -37,7 +31,7 @@ public class GitAutorization {
 
     @Test
     public void testGit02Success() {
-        open("https://github.com/login");
+
         $("input[name=login]").setValue("AnnaMirgor");
         $("#password").sendKeys("Asd19092000!");
         $(By.className("btn-primary")).click();
@@ -50,7 +44,7 @@ public class GitAutorization {
 
     @Test
     public void testGit03Success() {
-        open("https://github.com/login");
+
         $("input[name=login]").setValue("AnnaMirgor");
         $("#password").sendKeys("Asd19092000!");
         $(By.className("btn-primary")).click();
@@ -63,7 +57,7 @@ public class GitAutorization {
 
     @Test
     public void testGit04WrongPassword() {
-        open("https://github.com/login");
+
         $("input[name=login]").setValue("AnnaMirgor");
         $("#password").sendKeys("Asd19092000");
         $(By.className("btn-primary")).click();
@@ -73,7 +67,7 @@ public class GitAutorization {
 
     @Test
     public void testGit05WrongPassword() {
-        open("https://github.com/login");
+
         $("input[name=login]").setValue("AnnaMirgor");
         $("#password").sendKeys("Asd19092000");
         $(By.className("btn-primary")).click();
@@ -83,7 +77,7 @@ public class GitAutorization {
 
     @Test
     public void testGit06WrongPassword() {
-        open("https://github.com/login");
+
         $("input[name=login]").setValue("AnnaMirgor");
         $("#password").sendKeys("Asd19092000");
         $(By.className("btn-primary")).click();
