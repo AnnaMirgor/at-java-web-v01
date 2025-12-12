@@ -1,13 +1,13 @@
 package work.part02;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static org.openqa.selenium.devtools.v131.page.Page.close;
+
+@TestMethodOrder (MethodOrderer.MethodName.class)
 
 public class GitAutorization {
 
@@ -21,38 +21,48 @@ public class GitAutorization {
 //
 //    }
 
+
     @Test
-    public void testGit01() {
+    public void testGit01Success() {
         open("https://github.com/login");
         $("input[name=login]").setValue("AnnaMirgor");
         $("#password").sendKeys("Asd19092000!");
         $(By.className("btn-primary")).click();
         $(By.className("Button-label")).shouldBe(visible);
+        $(By.className("avatar")).click();
+        $(By.id(":r10:")).click();
+        $("input[name=commit]").click();
 
     }
 
     @Test
-    public void testGit02() {
+    public void testGit02Success() {
         open("https://github.com/login");
         $("input[name=login]").setValue("AnnaMirgor");
         $("#password").sendKeys("Asd19092000!");
         $(By.className("btn-primary")).click();
         $(By.className("avatar")).shouldBe(visible);
+        $(By.className("avatar")).click();
+        $(By.id(":r10:")).click();
+        $("input[name=commit]").click();
 
     }
 
     @Test
-    public void testGit03() {
+    public void testGit03Success() {
         open("https://github.com/login");
         $("input[name=login]").setValue("AnnaMirgor");
         $("#password").sendKeys("Asd19092000!");
         $(By.className("btn-primary")).click();
         $(By.className("circle")).shouldBe(visible);
+        $(By.className("avatar")).click();
+        $(By.id(":r10:")).click();
+        $("input[name=commit]").click();
 
     }
 
     @Test
-    public void testGit04() {
+    public void testGit04WrongPassword() {
         open("https://github.com/login");
         $("input[name=login]").setValue("AnnaMirgor");
         $("#password").sendKeys("Asd19092000");
@@ -62,7 +72,7 @@ public class GitAutorization {
     }
 
     @Test
-    public void testGit05() {
+    public void testGit05WrongPassword() {
         open("https://github.com/login");
         $("input[name=login]").setValue("AnnaMirgor");
         $("#password").sendKeys("Asd19092000");
@@ -72,7 +82,7 @@ public class GitAutorization {
     }
 
     @Test
-    public void testGit06() {
+    public void testGit06WrongPassword() {
         open("https://github.com/login");
         $("input[name=login]").setValue("AnnaMirgor");
         $("#password").sendKeys("Asd19092000");
@@ -80,4 +90,5 @@ public class GitAutorization {
         $(By.className("flash-error")).shouldBe(visible);
 
     }
+
 }
