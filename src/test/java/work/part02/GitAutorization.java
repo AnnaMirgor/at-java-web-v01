@@ -17,7 +17,7 @@ public class GitAutorization {
     }
 
     @Test
-    public void testGit01Success() {
+    public void testGit01LoginSuccess() {
 
         $("input[name=login]").setValue("AnnaMirgor");
         $("#password").sendKeys("Asd19092000!");
@@ -30,7 +30,7 @@ public class GitAutorization {
     }
 
     @Test
-    public void testGit02Success() {
+    public void testGit02LoginSuccess() {
 
         $("input[name=login]").setValue("AnnaMirgor");
         $("#password").sendKeys("Asd19092000!");
@@ -43,7 +43,7 @@ public class GitAutorization {
     }
 
     @Test
-    public void testGit03Success() {
+    public void testGit03LoginSuccess() {
 
         $("input[name=login]").setValue("AnnaMirgor");
         $("#password").sendKeys("Asd19092000!");
