@@ -25,13 +25,15 @@ public class MySimpleXPathTests {
     @Test
     void testSpecialParagraph() {
         $x("//p[@class='special-paragraph']").shouldHave(exactText("Этот параграф особенный - он единственный на странице с таким классом."));
+        $x("//p[@class='info-text']").shouldHave(exactText("Это первый информационный текст."));
     }
 
     @Test
     void testFindByTexts() {
         open("https://slqa.ru/cases/xPathSimpleForm/");
-        $(withText("Москва")).shouldHave(text("250 единиц"));
-        $x("//*[contains(.,'Питер')]").shouldHave(text("180 единиц"));
-        $x("//*[starts-with(.,'Казахстан')]").shouldHave(text("площадь 2 724 902"));
+        $(withText("Москва")).shouldBe(text("250 единиц"));
+        $x("//*[contains(., 'Питер')]").shouldBe(text("180 единиц"));
+        $x("//*[starts-with(., 'Казахстан')]").shouldBe(text("площадь 2 724 902"));
+
     }
 }
