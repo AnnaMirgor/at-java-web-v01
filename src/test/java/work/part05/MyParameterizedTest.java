@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class MyParameterizedTest {
@@ -20,13 +20,14 @@ public class MyParameterizedTest {
 
     @ParameterizedTest()
     @CsvFileSource(resources = "login_test.csv", numLinesToSkip=1)
-    void test02(String username, String password) {
+    void test02(String username, String password, String fio) {
         Configuration.pageLoadStrategy = "eager";
         open("https://slqamsk.github.io/cases/slflights/v01/");
         $("#username").sendKeys(username);
         $("#password").sendKeys(password);
         $("#loginButton").pressEnter();
-        $("#logoutButton").shouldBe(visible);
+        //$("#logoutButton").shouldBe(visible);
+        $("#greeting").shouldHave(exactText("Добро пожаловать, " + fio + "!"));
         $("#logoutButton").pressEnter();
     }
 }
