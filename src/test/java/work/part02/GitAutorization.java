@@ -84,5 +84,4 @@ public class GitAutorization {
         $(By.className("flash-error")).shouldBe(visible);
 
     }
-
 }
