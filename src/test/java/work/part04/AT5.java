@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
 public class AT5 {
@@ -12,19 +13,69 @@ public class AT5 {
     public void aviasalesHW () {
 
         Configuration.pageLoadStrategy = "eager";
-        //Открыть сайт, в модальном окне "Наш сайт использует файлы cookie" нажать "Согласен"
+        //Configuration.browser = "firefox";
+        //Configuration.pageLoadTimeout = 30_000;
+        //Открыть сайт
         open("https://www.aviasales.ru/");
-        $("#cookieConsent__ok").pressEnter();
-        //Выбрать пункт меню "Форматы обучения"
-        $x("//*[text()='Форматы обучения']").pressEnter();
-        //Выбрать раздел "Свободное обучение", нажать кнопку "Выбрать курс"
-        $x("//*[contains(text(), 'Свободное обучение')]").pressEnter();
-        $x("//*[contains(text(), 'Выбрать курс')]").pressEnter();
-        //В поле "Направление" выбрать "Программирование", нажать кнопку "Применить"
-        $("#Filter_CategoriesDirectionFilter").selectOptionByValue("ПРГ");
+
+        //Configuration.timeout = 10_000;
+
+        //sleep(6_000);
+        //$x("//div[@class='Bz112c-ZmdkE']").click();
+        //sleep(1_000);
+        $x("//span[@class='s__u1BTPMyjvYPx48Gd']").click();
         //sleep(2_000);
-        $("#sendBtn").click();
-        //Убедиться, что на странице есть элемент содержащий текст "Тестирование ПО"
-        $x("//*[contains(text(), 'Тестирование ПО')]").shouldBe(exist);
+        //$("#avia_form_origin-input").sendKeys("Москва");
+        $("#avia_form_destination-input").sendKeys("Санкт-Петербург");
+        Configuration.timeout = 6_000;
+
+        $x("//div[text()='Когда']").click();
+        //sleep(1_000);
+        $x("//button[@aria-label='суббота, 17 января 2026 г.']").click();
+
+        $x("//div[text()='Обратно']").click();
+        //sleep(1_000);
+        $x("//button[@aria-label='суббота, 31 января 2026 г.']").click();
+
+        $x("//*[contains(text(), '1 пассажир')]").click();
+        //sleep(1_000);
+        $x("//div[text()='Взрослые']/../../div[2]/div[3]/button").click();
+        //sleep(1_000);
+        $x("//div[text()='Дети']/../../div[2]/div[3]/button").click();
+        //sleep(1_000);
+
+        $x("//button[@data-test-id='form-submit']").click();
+        //sleep(2_000);
+
+        Configuration.timeout = 10_000;
+        //sleep(5_000);
+        $x("//span[text()='Рекомендуемый']").shouldBe(visible);
+
     }
+
+    @Test
+    public void aviasalesHW2 () {
+        Configuration.pageLoadStrategy = "eager";
+        Configuration.browser = "firefox";
+        //Configuration.pageLoadTimeout = 30_000;
+        //Открыть сайт
+        open("https://www.aviasales.ru/search/MOW1701LED310121");
+        Configuration.timeout = 10_000;
+        $x("//span[text()='Рекомендуемый']").shouldBe(visible);
+    }
+
+    @Test
+    public void aviasalesHW3 () {
+
+        Configuration.pageLoadStrategy = "eager";
+        //Configuration.browser = "firefox";
+
+        //Открыть сайт
+        open("https://www.aviasales.ru/");
+
+        Configuration.timeout = 10_000;
+
+        $("#close").shouldBe(visible);
+    }
+
 }
