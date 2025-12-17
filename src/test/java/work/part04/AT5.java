@@ -22,12 +22,12 @@ public class AT5 {
 
         //sleep(6_000);
         //$x("//div[@class='Bz112c-ZmdkE']").click();
-        //sleep(1_000);
-        $x("//span[@class='s__u1BTPMyjvYPx48Gd']").click();
         //sleep(2_000);
         //$("#avia_form_origin-input").sendKeys("Москва");
         $("#avia_form_destination-input").sendKeys("Санкт-Петербург");
         Configuration.timeout = 6_000;
+
+        $x("//span[@class='s__u1BTPMyjvYPx48Gd']").click();
 
         $x("//div[text()='Когда']").click();
         //sleep(1_000);
