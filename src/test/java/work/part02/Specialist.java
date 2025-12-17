@@ -14,7 +14,7 @@ public class Specialist {
         open("https://www.specialist.ru/courses");
         $x("//*[@name='CourseName']").sendKeys("тестирование");
         $x("//*[@name='CourseName']").pressEnter();
-        $x("//*[contains(.,'Автоматизированное тестирование веб-приложений с использованием Selenium')]");
+        $x("//*[contains(.,'Автоматизированное тестирование веб-приложений с использованием Selenium')]").pressEnter();
 
     }
 }
