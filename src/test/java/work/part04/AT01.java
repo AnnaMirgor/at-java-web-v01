@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.*;
 
-public class AT1 {
+public class AT01 {
 
     @Test
     public void specialistHW () {
