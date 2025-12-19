@@ -89,13 +89,14 @@ public class AT05 {
     }
 
     @Test
-    public void aviasalesFirefoxDateVisible () {
+    public void aviasalesFirefoxDropdownVisible () {
         //Отдельный короткий тест, проверяем видимость полей для выбора даты, не работает
 
         Configuration.pageLoadStrategy = "eager";
         Configuration.browser = "firefox";
         //Открыть сайт
         open("https://www.aviasales.ru/");
+        getWebDriver().manage().window().maximize();
         //Дождаться появления окна "Вход через аккаунт Google" и закрыть его
         Configuration.timeout = 10_000;
         switchTo().frame($x("//div[@id='credential_picker_container']/iframe[@class='L5Fo6c-PQbLGe']"));
@@ -115,4 +116,12 @@ public class AT05 {
         $x("//div[@data-test-id='dropdown']").shouldBe(visible);
     }
 
+    @Test
+    public void aviasalesEdge () {
+
+        Configuration.pageLoadStrategy = "eager";
+        Configuration.browser = "edge";
+        //Открыть сайт — не работает!!!
+        open("https://www.aviasales.ru/");
+    }
 }
