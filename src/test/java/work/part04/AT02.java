@@ -96,7 +96,7 @@ public class AT02 {
         //7. Убедиться, что стоимость не может быть рассчитана.
         open("http://92.51.36.108:7777/sl.qa/cinema/index.php");
         $("input[name=age]").type("45");
-        $("input[name=date]").sendKeys("18122025");
+        $("input[name=date]").sendKeys("19122025");
         $("input[name=session][value='1']").click();
         $(By.name("film")).selectRadio("back");
         $x("//input[@value='Рассчитать']").click();
