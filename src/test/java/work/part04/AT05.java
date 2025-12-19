@@ -3,7 +3,6 @@ package work.part04;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -20,7 +19,6 @@ public class AT05 {
         Configuration.timeout = 5_000;
         //В поле "Куда" ввести "Санкт-Петербург"
         $("#avia_form_destination-input").type("Санкт-Петербург");
-        //Configuration.timeout = 8_000;
         sleep(5_000);
         //Отключить галочку в поле "Открыть Островок! в новой вкладке"
         $x("//span[@class='s__u1BTPMyjvYPx48Gd']").click();
@@ -32,17 +30,19 @@ public class AT05 {
         $x("//button[@aria-label='суббота, 31 января 2026 г.']").click();
         //Выбрать количество пассажиров — 2 взрослых и 1 ребёнок
         $x("//*[contains(text(), '1 пассажир')]").click();
-        $x("//div[text()='Взрослые']/../../div[2]/div[3]/button").click();
-        $x("//div[text()='Дети']/../../div[2]/div[3]/button").click();
+        $x("//div[text()='Взрослые']/ancestor::div[@data-test-id='number-of-adults']//button[@data-test-id='increase-button']").click();
+        $x("//div[text()='Дети']/ancestor::div[@data-test-id='number-of-children']//button[@data-test-id='increase-button']").click();
         //Нажать кнопку "Найти билеты"
         $x("//button[@data-test-id='form-submit']").click();
         Configuration.timeout = 10_000;
 
-        //Найти поле с отметкой "Рекомендованный"
-        $x("//span[text()='Рекомендуемый']").shouldBe(visible);
+        //Найти рейс с отметкой "Рекомендованный", вывести на консоль цену
+        System.out.println("\nЦена рекомендованного рейса: "
+                + $x("//span[text()='Рекомендуемый']/../../../div[2]/div/div/div/div").text());
 
-        //Найти поле с отметкой "Самый дешёвый"
-        $x("//span[text()='Самый дешёвый']").shouldBe(visible);
+        //Найти рейс с отметкой "Самый дешёвый", вывести на консоль цену
+        System.out.println("Цена самого дешёвого рейса: "
+                + $x("//span[text()='Самый дешёвый']/../../../div[2]/div/div/div/div").text());
 
     }
 
@@ -54,7 +54,7 @@ public class AT05 {
         //Открыть сайт
         open("https://www.aviasales.ru/");
         getWebDriver().manage().window().maximize();
-        //Дождаться появления окна "Вход через аккаунт Google" и закрыть его
+        //Дождаться появления окна "Вход через аккаунт Google" и закрыть его (это iframe)
         Configuration.timeout = 10_000;
         switchTo().frame($x("//div[@id='credential_picker_container']/iframe[@class='L5Fo6c-PQbLGe']"));
         $("#close").click();
@@ -74,8 +74,8 @@ public class AT05 {
         $x("//button[@aria-label='суббота, 31 января 2026 г.']").click();
         //Выбрать количество пассажиров — 2 взрослых и 1 ребёнок
         $x("//*[contains(text(), '1 пассажир')]").click();
-        $x("//div[text()='Взрослые']/../../div[2]/div[3]/button").click();
-        $x("//div[text()='Дети']/../../div[2]/div[3]/button").click();
+        $x("//div[text()='Взрослые']/ancestor::div[@data-test-id='number-of-adults']//button[@data-test-id='increase-button']").click();
+        $x("//div[text()='Дети']/ancestor::div[@data-test-id='number-of-children']//button[@data-test-id='increase-button']").click();
         //Нажать кнопку "Найти билеты"
         $x("//button[@data-test-id='form-submit']").click();
         Configuration.timeout = 10_000;
@@ -97,7 +97,7 @@ public class AT05 {
         //Открыть сайт
         open("https://www.aviasales.ru/");
         getWebDriver().manage().window().maximize();
-        //Дождаться появления окна "Вход через аккаунт Google" и закрыть его
+        //Дождаться появления окна "Вход через аккаунт Google" и закрыть его (это iframe)
         Configuration.timeout = 10_000;
         switchTo().frame($x("//div[@id='credential_picker_container']/iframe[@class='L5Fo6c-PQbLGe']"));
         $("#close").click();
@@ -124,4 +124,5 @@ public class AT05 {
         //Открыть сайт — не работает!!!
         open("https://www.aviasales.ru/");
     }
+
 }

@@ -12,8 +12,9 @@ public class AT01 {
     public void specialistHW () {
 
         Configuration.pageLoadStrategy = "eager";
-        //Открыть сайт, в модальном окне "Наш сайт использует файлы cookie" нажать "Согласен"
+        //Открыть сайт
         open("https://www.specialist.ru/");
+        //В модальном окне "Наш сайт использует файлы cookie" нажать "Согласен"
         $("#cookieConsent__ok").pressEnter();
         //Выбрать пункт меню "Форматы обучения"
         $x("//*[text()='Форматы обучения']").pressEnter();
