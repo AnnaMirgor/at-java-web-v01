@@ -34,15 +34,15 @@ public class AT05 {
         $x("//div[text()='Дети']/ancestor::div[@data-test-id='number-of-children']//button[@data-test-id='increase-button']").click();
         //Нажать кнопку "Найти билеты"
         $x("//button[@data-test-id='form-submit']").click();
-        Configuration.timeout = 10_000;
+        Configuration.timeout = 12_000;
 
         //Найти рейс с отметкой "Рекомендованный", вывести на консоль цену
         System.out.println("\nЦена рекомендованного рейса: "
-                + $x("//span[text()='Рекомендуемый']/../../../div[2]/div/div/div/div").text());
+                + $x("//span[text()='Рекомендуемый']/ancestor::div[@data-test-id='ticket-preview']//div[@data-test-id='price']").text());
 
         //Найти рейс с отметкой "Самый дешёвый", вывести на консоль цену
         System.out.println("Цена самого дешёвого рейса: "
-                + $x("//span[text()='Самый дешёвый']/../../../div[2]/div/div/div/div").text());
+                + $x("//span[text()='Самый дешёвый']/ancestor::div[@data-test-id='ticket-preview']//div[@data-test-id='price']").text());
 
     }
 
@@ -67,7 +67,9 @@ public class AT05 {
         //Отключить галочку в поле "Открыть Островок! в новой вкладке"
         $x("//span[@class='s__u1BTPMyjvYPx48Gd']").click();
         //Выбрать дату вылета 17.01.2026
+        sleep(3_000);
         $x("//div[text()='Когда']").click();
+        sleep(3_000);
         $x("//button[@aria-label='суббота, 17 января 2026 г.']").click();
         //Выбрать дату возвращения 31.01.2026
         $x("//div[text()='Обратно']").click();
@@ -80,11 +82,13 @@ public class AT05 {
         $x("//button[@data-test-id='form-submit']").click();
         Configuration.timeout = 10_000;
 
-        //Найти поле с отметкой "Рекомендованный"
-        $x("//span[text()='Рекомендуемый']").shouldBe(visible);
+        //Найти рейс с отметкой "Рекомендованный", вывести на консоль цену
+        System.out.println("\nЦена рекомендованного рейса: "
+                + $x("//span[text()='Рекомендуемый']/ancestor::div[@data-test-id='ticket-preview']//div[@data-test-id='price']").text());
 
-        //Найти поле с отметкой "Самый дешёвый"
-        $x("//span[text()='Самый дешёвый']").shouldBe(visible);
+        //Найти рейс с отметкой "Самый дешёвый", вывести на консоль цену
+        System.out.println("Цена самого дешёвого рейса: "
+                + $x("//span[text()='Самый дешёвый']/ancestor::div[@data-test-id='ticket-preview']//div[@data-test-id='price']").text());
 
     }
 
