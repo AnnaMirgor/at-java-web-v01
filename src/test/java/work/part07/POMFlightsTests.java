@@ -143,10 +143,12 @@ public class POMFlightsTests {
         RegistrationPage registrationPage = new RegistrationPage();
         registrationPage.isFlightDataCorrect("Москва", "Нью-Йорк");
         registrationPage.registrationEmptyPassport("");
+        registrationPage.isErrorFillAllFied();
 
         // Страница регистрации на рейс
         RegistrationPage registrationPage2 = new RegistrationPage();
-        registrationPage2.isFlightDataCorrect("Москва", "Нью-Йорк");
-        registrationPage2.successDefaultRegistration();
+        registrationPage2.registration("Иванов Иван Иванович", "1234 567890",
+                "ivanov@example.com", "+7 (123) 456-7890");
+        registrationPage2.confirmation();
     }
 }

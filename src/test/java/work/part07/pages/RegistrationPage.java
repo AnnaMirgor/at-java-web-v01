@@ -36,6 +36,14 @@ public class RegistrationPage {
         this.message.shouldHave(text("Регистрация успешно завершена!"));
     }
 
+    @Step("Подтверждение регистрации")
+    public void confirmation() {
+        Alert alert= switchTo().alert();
+        assertTrue(alert.getText().contains("Бронирование завершено"));
+        alert.accept();
+        this.message.shouldHave(text("Регистрация успешно завершена!"));
+    }
+
     @Step("Заполнение полей и регистрация")
     public void registration(String fio, String passport, String email, String phone) {
         this.fio.setValue(fio);
