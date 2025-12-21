@@ -132,23 +132,18 @@ public class POMFlightsTests {
         flightsList.newSearch();
 
         // Страница поиска рейсов повторно
-        SearchPage searchPage2 = new SearchPage();
-        searchPage2.search("22.12.2025", "Москва", "Нью-Йорк");
+        searchPage.search("22.12.2025", "Москва", "Нью-Йорк");
 
         // Страница со списком найденных рейсов
-        FlightsListPage flightsList2 = new FlightsListPage();
-        flightsList2.registerToFirstFlight();
+        flightsList.registerToFirstFlight();
 
-        // Страница регистрации на рейс, пустой паспорт
+        // Страница регистрации на рейс, пустой паспорт, даалее успешная регистрация
         RegistrationPage registrationPage = new RegistrationPage();
         registrationPage.isFlightDataCorrect("Москва", "Нью-Йорк");
         registrationPage.registrationEmptyPassport("");
         registrationPage.isErrorFillAllFied();
-
-        // Страница регистрации на рейс
-        RegistrationPage registrationPage2 = new RegistrationPage();
-        registrationPage2.registration("Иванов Иван Иванович", "1234 567890",
+        registrationPage.registration("Иванов Иван Иванович", "1234 567890",
                 "ivanov@example.com", "+7 (123) 456-7890");
-        registrationPage2.confirmation();
+        registrationPage.confirmation();
     }
 }
