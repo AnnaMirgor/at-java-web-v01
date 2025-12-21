@@ -10,7 +10,8 @@ import static com.codeborne.selenide.Selenide.$x;
 public class FlightsListPage {
     SelenideElement
             flightsTable = $("#flightsTable"),
-            registerButton = $x("//button[.='Зарегистрироваться']");
+            registerButton = $x("//button[.='Зарегистрироваться']"),
+            newSearchButton = $x("//button[.='Новый поиск']");
 
     @Step("Выбираем первый рейс в списке")
     public void registerToFirstFlight() {
@@ -21,4 +22,8 @@ public class FlightsListPage {
     public void isNoFlights() {
         flightsTable.shouldHave(text("Рейсов по вашему запросу не найдено."));
     }
+
+    @Step("Возврат на страницу поиска")
+    public void newSearch() { this.newSearchButton.click(); }
+
 }

@@ -45,6 +45,12 @@ public class RegistrationPage {
         buttonFinishRegistration.click();
     }
 
+    @Step("Пустой паспорт")
+    public void registrationEmptyPassport(String passport) {
+        this.passport.setValue(passport);
+        buttonFinishRegistration.click();
+    }
+
     @Step("Появилась ошибка Заполните все поля")
     public void isErrorFillAllFied() {
         this.message.shouldHave(text("Пожалуйста, заполните все поля."));

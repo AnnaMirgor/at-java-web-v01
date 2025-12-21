@@ -1,10 +1,10 @@
 package work.part07;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
-import demo.part07.pages.FlightsListPage;
-import demo.part07.pages.LoginPage;
-import demo.part07.pages.RegistrationPage;
-import demo.part07.pages.SearchPage;
+import work.part07.pages.FlightsListPage;
+import work.part07.pages.LoginPage;
+import work.part07.pages.RegistrationPage;
+import work.part07.pages.SearchPage;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 
@@ -103,7 +103,7 @@ public class POMFlightsTests {
         registrationPage.isErrorFillAllFied();
     }
 
-    // 2. Не задана дата
+    // 6. Задана дата в прошлом
     @Test
     void test06DateInPast() {
         LoginPage loginPage = new LoginPage();
@@ -112,6 +112,41 @@ public class POMFlightsTests {
 
         SearchPage searchPage = new SearchPage();
         searchPage.search("01.12.2025");
-        searchPage.is;
+        searchPage.isDepartureDateInPast();
+    }
+
+    //7. Успешная регистрация с повторным поиском рейсов и повторным вводом паспорта
+    @Test
+    void test07SuccessRegistrationRepeat() {
+        // Страница логина
+        LoginPage loginPage = new LoginPage();
+        loginPage.login("standard_user", "stand_pass1");
+        loginPage.isLoginSuccessful("Иванов Иван Иванович");
+
+        // Страница поиска рейсов
+        SearchPage searchPage = new SearchPage();
+        searchPage.search("22.12.2025", "Казань", "Париж");
+
+        // Страница со списком найденных рейсов, выполняем новый поиск
+        FlightsListPage flightsList = new FlightsListPage();
+        flightsList.newSearch();
+
+        // Страница поиска рейсов повторно
+        SearchPage searchPage2 = new SearchPage();
+        searchPage2.search("22.12.2025", "Москва", "Нью-Йорк");
+
+        // Страница со списком найденных рейсов
+        FlightsListPage flightsList2 = new FlightsListPage();
+        flightsList2.registerToFirstFlight();
+
+        // Страница регистрации на рейс, пустой паспорт
+        RegistrationPage registrationPage = new RegistrationPage();
+        registrationPage.isFlightDataCorrect("Москва", "Нью-Йорк");
+        registrationPage.registrationEmptyPassport("");
+
+        // Страница регистрации на рейс
+        RegistrationPage registrationPage2 = new RegistrationPage();
+        registrationPage2.isFlightDataCorrect("Москва", "Нью-Йорк");
+        registrationPage2.successDefaultRegistration();
     }
 }
