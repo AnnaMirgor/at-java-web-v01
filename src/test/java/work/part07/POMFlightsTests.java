@@ -137,7 +137,7 @@ public class POMFlightsTests {
         // Страница со списком найденных рейсов
         flightsList.registerToFirstFlight();
 
-        // Страница регистрации на рейс, пустой паспорт, даалее успешная регистрация
+        // Страница регистрации на рейс, пустой паспорт, д8алее успешная регистрация
         RegistrationPage registrationPage = new RegistrationPage();
         registrationPage.isFlightDataCorrect("Москва", "Нью-Йорк");
         registrationPage.registrationEmptyPassport("");
