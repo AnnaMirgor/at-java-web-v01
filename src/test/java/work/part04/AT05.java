@@ -125,6 +125,7 @@ public class AT05 {
 
         Configuration.pageLoadStrategy = "eager";
         Configuration.browser = "edge";
+        sleep(5_000);
         //Открыть сайт — не работает!!!
         open("https://www.aviasales.ru/");
     }

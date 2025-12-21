@@ -13,7 +13,8 @@ public class SearchPage {
             cityTo = $("#arrivalCity"),
             departureDate = $("#departureDate"),
             findButton = $x("//button[.='Найти']"),
-            message = $("#searchMessage");
+            message = $("#searchMessage"),
+            newSearchButton = $x("//button[.='Новый поиск']");
 
     @Step("Поиск рейсов (задаём только дату)")
     public void search(String departureDate) {
