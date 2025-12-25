@@ -23,13 +23,12 @@ public class AT05 {
         $("#avia_form_origin-input").type("Москва");
         //В поле "Куда" ввести "Санкт-Петербург"
         $("#avia_form_destination-input").type("Санкт-Петербург");
-        sleep(15_000);
+        sleep(5_000);
         //Отключить галочку в поле "Открыть Островок! в новой вкладке"
         $x("//span[@class='s__u1BTPMyjvYPx48Gd']").click();
         //Выбрать дату вылета 17.01.2026
         $x("//div[text()='Когда']").click();
-        $x("//div[text()='Когда']").setValue("17.01.2026");
-        //$x("//button[@aria-label='суббота, 17 января 2026 г.']").click();
+        $x("//button[@aria-label='суббота, 17 января 2026 г.']").click();
         //Выбрать дату возвращения 31.01.2026
         $x("//div[text()='Обратно']").click();
         $x("//button[@aria-label='суббота, 31 января 2026 г.']").click();
