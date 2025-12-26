@@ -9,8 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.sleep;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class AviasalesTest {
@@ -24,28 +22,71 @@ public class AviasalesTest {
     void setUp() {
         Configuration.pageLoadStrategy = "eager";
         open("https://www.aviasales.ru/");
-        getWebDriver().manage().window().maximize(); }
-
-    @Test
-    public void aviasalesChrome () {
-
-        ChoosingRoutePage choosingRoutePage = new ChoosingRoutePage();
-        //Отключить галочку в поле "Открыть Островок! в новой вкладке"
-        choosingRoutePage.checkbox();
-        //Выбрать маршруты
-        choosingRoutePage.choosingRoute("Москва", "Санкт-Петербург");
-
-        ChoosingDatesPage choosingDatesPage = new ChoosingDatesPage();
-        //Выбрать даты
-        choosingDatesPage.сhoosingDates();
-        //Выбрать количество пассажиров — 2 взрослых и 1 ребёнок
-        choosingDatesPage.сhoosingPassengersAdult();
-        choosingDatesPage.сhoosingPassengersChildren();
-        //Нажать кнопку "Найти билеты"
-        choosingDatesPage.findTickets();
-        //Найти рейс с отметкой "Самый дешёвый", вывести на консоль цену
-        choosingDatesPage.findCheapestFlight();
-        //Найти рейс с отметкой "Рекомендованный", вывести на консоль цену
-        choosingDatesPage.findRecommendedFlight();
+        getWebDriver().manage().window().maximize();
     }
+
+    // 1. Поиск рейсов Москва-Санкт-Петербург, 17.01.2026-31.01.2026, 2 взрослых, 1 ребёнок, показать рекомендованный, оптимальный, самый дешёвый
+    @Test
+    public void test01SuccessSearch () {
+
+        RoutePage routePage = new RoutePage();
+        //Отключить галочку в поле "Открыть Островок! в новой вкладке"
+        routePage.checkbox();
+        //Выбрать маршруты
+        routePage.choosingRoute("Москва", "Санкт-Петербург");
+
+        DatesPage datesPage = new DatesPage();
+        //Выбрать даты
+        datesPage.choosingDates();
+        //Выбрать количество пассажиров — 2 взрослых и 1 ребёнок
+        datesPage.choosingPassengersAdult();
+        datesPage.choosingPassengersChildren();
+        //Нажать кнопку "Найти билеты"
+        datesPage.findTickets();
+
+        FlightsPage flightsPage = new FlightsPage();
+        //Найти рейс с отметкой "Самый дешёвый", вывести на консоль цену
+        flightsPage.findCheapestFlight();
+        //Найти рейс с отметкой "Рекомендованный", вывести на консоль цену
+        flightsPage.findRecommendedFlight();
+        //Найти рейс с отметкой "Оптимальный", вывести на консоль цену
+        flightsPage.findOptimalFlight();
+    }
+
+    // 2. Поиск рейсов Новосибирск-Москва, 17.01.2026-31.01.2026, 1 взрослый, самый дешёвый рейс с багажом
+    @Test
+    public void test02SuccessSearchWithBaggage () {
+
+        RoutePage routePage = new RoutePage();
+        //Отключить галочку в поле "Открыть Островок! в новой вкладке"
+        routePage.checkbox();
+        //Выбрать маршруты
+        routePage.choosingRoute("Новосибирск", "Москва");
+
+        DatesPage datesPage = new DatesPage();
+        //Выбрать даты
+        $x("//div[text()='Когда']").click();
+        $x("//button[@aria-label='суббота, 17 января 2026 г.']").click();
+        $x("//div[text()='Обратно']").click();
+        $x("//button[@aria-label='суббота, 31 января 2026 г.']").click();
+        //Нажать кнопку "Найти билеты"
+        datesPage.findTickets();
+
+        FlightsPage flightsPage = new FlightsPage();
+        //Отфильтровать рейсы с багажом
+        flightsPage.withBaggage();
+        //Найти рейс с отметкой "Самый дешёвый", вывести на консоль цену
+        flightsPage.findCheapestFlight();
+
+    }
+
+    // 3. Проверяем возможность убрать галочку Островок
+    @Test
+    public void test03Checkbox () {
+
+        RoutePage routePage = new RoutePage();
+        //Отключить галочку в поле "Открыть Островок! в новой вкладке"
+        routePage.checkbox();
+    }
+
 }
