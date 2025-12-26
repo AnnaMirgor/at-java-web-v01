@@ -14,20 +14,18 @@ public class AT05 {
     public void aviasalesChrome () {
 
         Configuration.pageLoadStrategy = "eager";
+        //Configuration.pageLoadTimeout = 30_000;
         //Открыть сайт
         open("https://www.aviasales.ru/");
         getWebDriver().manage().window().maximize();
-        //Configuration.timeout = 8_000;
-        //sleep(10_000);
-        //Отключить галочку в поле "Открыть Островок! в новой вкладке"
-        $x("//span[@class='s__u1BTPMyjvYPx48Gd']").click();
         //В поле "Куда" ввести "Санкт-Петербург"
         $("#avia_form_destination-input").type("Санкт-Петербург");
         sleep(5_000);
-        $("#avia_form_origin-input").click();
+        //Отключить галочку в поле "Открыть Островок! в новой вкладке"
+        $x("//span[@class='s__u1BTPMyjvYPx48Gd']").click();
+        //$("#avia_form_origin-input").click();
         //$("#avia_form_origin-input").sendKeys("");
-        $("#avia_form_origin-input").type("Москва");
-
+        //$("#avia_form_origin-input").type("Москва");
 
         //Выбрать дату вылета 17.01.2026
         $x("//div[text()='Когда']").click();

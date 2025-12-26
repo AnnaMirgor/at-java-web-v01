@@ -1,4 +1,4 @@
-package work.aviasalesPOM;
+package work.myAviasalesPOM;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -15,10 +15,17 @@ public class RoutePage {
             origin = $("#avia_form_origin-input"),
             destination = $("#avia_form_destination-input");
 
-    @Step("Выбор маршрута")
+    @Step("Выбор городов вылета и прибытия")
     public void choosingRoute(String origin, String destination) {
         this.origin.click();
         this.origin.type(origin);
+        this.destination.click();
+        this.destination.type(destination);
+        //Configuration.timeout = 10_000;
+    }
+
+    @Step("Выбор только города прибытия, если вылет из Москвы")
+    public void choosingRoute(String destination) {
         this.destination.click();
         this.destination.type(destination);
         //Configuration.timeout = 10_000;
