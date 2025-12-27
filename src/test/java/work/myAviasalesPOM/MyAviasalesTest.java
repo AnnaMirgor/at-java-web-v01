@@ -38,7 +38,7 @@ public class MyAviasalesTest {
 
         RoutePage routePage = new RoutePage();
         //Выбрать маршрут
-        routePage.choosingRoute("Санкт-Петербург");
+        routePage.selectRoute("Санкт-Петербург");
         sleep(5_000);
         DatesPage datesPage = new DatesPage();
         //Отключить галочку в поле "Открыть Островок! в новой вкладке"
@@ -52,8 +52,8 @@ public class MyAviasalesTest {
         $x("//button[@aria-label='суббота, 31 января 2026 г.']").click();
 
         //Выбрать количество пассажиров — 2 взрослых и 1 ребёнок
-        datesPage.choosingPassengersAdult();
-        datesPage.choosingPassengersChildren();
+        datesPage.selectPassengersAdult();
+        datesPage.selectPassengersChildren();
         //Нажать кнопку "Найти билеты"
         datesPage.findTickets();
 
