@@ -75,7 +75,7 @@ public class MyAviasalesTest {
         DatesPage datesPage = new DatesPage();
         //Отключить галочку в поле "Открыть Островок! в новой вкладке"
         datesPage.checkbox();
-        Configuration.pageLoadTimeout = 15_000;
+        Configuration.pageLoadTimeout = 5_000;
         datesPage.checkbox();
         //Выбрать даты
         datesPage.selectDatesDifferent();
@@ -97,7 +97,7 @@ public class MyAviasalesTest {
     // 3. Поиск рейсов Казань-Санкт-Петербург, 17.01.2026 одним днём, 1 взрослый, 1 ребёнок, выбрать самый дешёвый рейс
     // выбрать самый дешёвый рейс,
     @Test
-    public void test03 () {
+    public void test03SelectCheapestFlight () {
 
         RoutePage routePage = new RoutePage();
         //Выбрать маршрут
