@@ -1,13 +1,14 @@
 package work.myAviasalesPOM;
 
-//import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
-//import java.time.Duration;
+import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.sleep;
 
 public class DatesPage {
 
@@ -25,10 +26,11 @@ public class DatesPage {
 
     @Step("Чекбокс Островок")
     public void checkbox() {
-        //this.checkbox.shouldBe(Condition.interactable, Duration.ofSeconds(30)); // Проверяем, что элемент interactable,
-        // т.е. с ним можно взаимодействовать - добавил, т.к. возникали ошибки, что элемент не interactable
-        //this.checkbox.shouldNotBe(Condition.readonly, Duration.ofSeconds(30)); // Проверяем, что элемент доступен для записи,
-        // т.е. с ним можно взаимодействовать - добавил, т.к. возникали ошибки, что элемент readonly
+        this.checkbox.shouldBe(Condition.interactable, Duration.ofSeconds(30)); // Проверяем, что элемент interactable,
+        //т.е. с ним можно взаимодействовать - добавил, т.к. возникали ошибки, что элемент не interactable
+        this.checkbox.shouldNotBe(Condition.readonly, Duration.ofSeconds(30)); // Проверяем, что элемент доступен для записи,
+        //т.е. с ним можно взаимодействовать - добавил, т.к. возникали ошибки, что элемент readonly
+        sleep(5_000);
         this.checkbox.click();
     }
 
