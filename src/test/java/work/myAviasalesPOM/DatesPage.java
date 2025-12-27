@@ -35,11 +35,19 @@ public class DatesPage {
     }
 
     @Step("Выбор дат")
-    public void selectDates() {
+    public void selectDatesDifferent() {
         this.startDateField.click();
         this.dateFirst.click();
         this.endDateField.click();
         this.dateSecond.click();
+    }
+
+    @Step("Выбор даты, поездка одним днём")
+    public void selectOneDate() {
+        this.startDateField.click();
+        this.dateFirst.click();
+        this.endDateField.click();
+        this.dateFirst.click();
     }
 
     @Step("Выбор взрослых пассажиров")
@@ -48,8 +56,14 @@ public class DatesPage {
         this.adultsNumbers.click();
     }
 
-    @Step("Выбор пассажиров от 2 до 12 лет")
+    @Step("Выбор пассажиров от 2 до 12 лет после добавления вхрослых")
     public void selectPassengersChildren() {
+        this.childrenNumbers.click();
+    }
+
+    @Step("Выбор пассажиров от 2 до 12 лет без добавления вхрослых")
+    public void selectPassengersOnlyChildren() {
+        this.passengersNumbers.click();
         this.childrenNumbers.click();
     }
 

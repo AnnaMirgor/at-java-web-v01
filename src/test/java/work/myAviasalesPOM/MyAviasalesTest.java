@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 //import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -39,27 +40,26 @@ public class MyAviasalesTest {
         RoutePage routePage = new RoutePage();
         //Выбрать маршрут
         routePage.selectRoute("Санкт-Петербург");
-        Configuration.pageLoadTimeout = 5_000;
+        Configuration.pageLoadTimeout = 15_000;
         //sleep(5_000);
         DatesPage datesPage = new DatesPage();
         //Отключить галочку в поле "Открыть Островок! в новой вкладке"
         datesPage.checkbox();
         //Выбрать даты
-        datesPage.selectDates();
+        datesPage.selectDatesDifferent();
         //Выбрать количество пассажиров — 2 взрослых и 1 ребёнок
         datesPage.selectPassengersAdult();
         datesPage.selectPassengersChildren();
         //Нажать кнопку "Найти билеты"
         datesPage.findTickets();
-
         FlightsPage flightsPage = new FlightsPage();
+        Configuration.pageLoadTimeout = 60_000;
         //Найти рейс с отметкой "Самый дешёвый", вывести на консоль цену
         flightsPage.findCheapestFlight();
         //Найти рейс с отметкой "Рекомендованный", вывести на консоль цену
         flightsPage.findRecommendedFlight();
         //Найти рейс с отметкой "Оптимальный", вывести на консоль цену
         flightsPage.findOptimalFlight();
-        sleep(5_000);
     }
 
     // 2. Поиск рейсов Екатеринбург-Москва, 17.01.2026-31.01.2026, 1 взрослый, самый дешёвый рейс с багажом
@@ -70,46 +70,59 @@ public class MyAviasalesTest {
         //routePage.checkbox();
         //Выбрать маршрут
         routePage.selectRoute("Екатеринбург", "Москва");
-        Configuration.pageLoadTimeout = 5_000;
+        Configuration.pageLoadTimeout = 15_000;
         //sleep(5_000);
         DatesPage datesPage = new DatesPage();
         //Отключить галочку в поле "Открыть Островок! в новой вкладке"
         datesPage.checkbox();
-        Configuration.pageLoadTimeout = 5_000;
-        //sleep(5_000);
+        Configuration.pageLoadTimeout = 15_000;
         datesPage.checkbox();
         //Выбрать даты
-        datesPage.selectDates();
+        datesPage.selectDatesDifferent();
         //Нажать кнопку "Найти билеты"
         datesPage.findTickets();
-        Configuration.pageLoadTimeout = 10_000;
         //sleep(10_000);
         FlightsPage flightsPage = new FlightsPage();
+        Configuration.pageLoadTimeout = 60_000;
+        //sleep(20_000);
         //Отфильтровать рейсы с багажом
         flightsPage.withBaggage();
-        Configuration.pageLoadTimeout = 20_000;
+        Configuration.pageLoadTimeout = 60_000;
         //sleep(20_000);
         //Найти рейс с отметкой "Самый дешёвый", вывести на консоль цену
         flightsPage.findCheapestFlightWithBaggage();
 
     }
 
-    // 3. Багаж
+    // 3. Поиск рейсов Казань-Санкт-Петербург, 17.01.2026 одним днём, 1 взрослый, 1 ребёнок, выбрать самый дешёвый рейс
+    // выбрать самый дешёвый рейс,
     @Test
-    public void test03Checkbox () {
+    public void test03 () {
 
         RoutePage routePage = new RoutePage();
+        //Выбрать маршрут
+        routePage.selectRoute("Казань", "Санкт-Петербург");
+        Configuration.pageLoadTimeout = 15_000;
+        DatesPage datesPage = new DatesPage();
         //Отключить галочку в поле "Открыть Островок! в новой вкладке"
-        routePage.checkbox();
+        datesPage.checkbox();
+        //Выбрать даты
+        datesPage.selectOneDate();
+        //Выбрать количество пассажиров — 1 взрослый и 1 ребёнок
+        datesPage.selectPassengersOnlyChildren();
+        //Нажать кнопку "Найти билеты"
+        datesPage.findTickets();
+        //sleep(15_000);
+        Configuration.pageLoadTimeout = 60_000;
+        FlightsPage flightsPage = new FlightsPage();
+        //Найти рейс с отметкой "Самый дешёвый", вывести на консоль цену
+        flightsPage.findCheapestFlight();
+        sleep(1_000);
+        //Выбрать этот рейс
+        flightsPage.selectCheapestFlight();
+        Configuration.pageLoadTimeout = 60_000;
+        //Выбрать покупку напрямую у Авиасейлс
+        flightsPage.buyTicketsAviasales();
+        //sleep(5_000);
     }
-
-    // Замена городов
-    @Test
-    public void test04ChangeCities () {
-
-        RoutePage routePage = new RoutePage();
-        //Отключить галочку в поле "Открыть Островок! в новой вкладке"
-        routePage.selectRoute("Екатеринбург", "Санкт-Петербург");
-    }
-
 }
