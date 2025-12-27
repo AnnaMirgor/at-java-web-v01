@@ -14,7 +14,7 @@ public class DatesPage {
     SelenideElement
             //startDateField = $x("//div[text()='Когда']"),
             checkbox = $x("//span[@class='s__u1BTPMyjvYPx48Gd']"),
-            startDateField = $x("//div[@class='s__haCTfA3JViwhTtfy']"),
+            startDateField = $x("//div[text()='Когда']"),
             endDateField = $x("//div[text()='Обратно']"),
             dateFirst = $x("//button[@aria-label='суббота, 17 января 2026 г.']"),
             dateSecond = $x("//button[@aria-label='суббота, 31 января 2026 г.']"),
