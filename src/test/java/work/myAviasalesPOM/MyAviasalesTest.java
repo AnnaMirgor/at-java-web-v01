@@ -39,7 +39,8 @@ public class MyAviasalesTest {
         RoutePage routePage = new RoutePage();
         //Выбрать маршрут
         routePage.selectRoute("Санкт-Петербург");
-        sleep(5_000);
+        Configuration.pageLoadTimeout = 5_000;
+        //sleep(5_000);
         DatesPage datesPage = new DatesPage();
         //Отключить галочку в поле "Открыть Островок! в новой вкладке"
         datesPage.checkbox();
@@ -58,33 +59,38 @@ public class MyAviasalesTest {
         flightsPage.findRecommendedFlight();
         //Найти рейс с отметкой "Оптимальный", вывести на консоль цену
         flightsPage.findOptimalFlight();
+        sleep(5_000);
     }
 
-    // 2. Поиск рейсов Новосибирск-Москва, 17.01.2026-31.01.2026, 1 взрослый, самый дешёвый рейс с багажом
+    // 2. Поиск рейсов Екатеринбург-Москва, 17.01.2026-31.01.2026, 1 взрослый, самый дешёвый рейс с багажом
     @Test
     public void test02SuccessSearchWithBaggage () {
 
         RoutePage routePage = new RoutePage();
         //routePage.checkbox();
         //Выбрать маршрут
-        routePage.selectRoute("Новосибирск", "Москва");
-        sleep(5_000);
+        routePage.selectRoute("Екатеринбург", "Москва");
+        Configuration.pageLoadTimeout = 5_000;
+        //sleep(5_000);
         DatesPage datesPage = new DatesPage();
         //Отключить галочку в поле "Открыть Островок! в новой вкладке"
         datesPage.checkbox();
-        sleep(5_000);
+        Configuration.pageLoadTimeout = 5_000;
+        //sleep(5_000);
         datesPage.checkbox();
         //Выбрать даты
         datesPage.selectDates();
         //Нажать кнопку "Найти билеты"
         datesPage.findTickets();
-        sleep(5_000);
+        Configuration.pageLoadTimeout = 10_000;
+        //sleep(10_000);
         FlightsPage flightsPage = new FlightsPage();
         //Отфильтровать рейсы с багажом
         flightsPage.withBaggage();
-        sleep(5_000);
+        Configuration.pageLoadTimeout = 20_000;
+        //sleep(20_000);
         //Найти рейс с отметкой "Самый дешёвый", вывести на консоль цену
-        flightsPage.findCheapestFlight();
+        flightsPage.findCheapestFlightWithBaggage();
 
     }
 
@@ -95,6 +101,15 @@ public class MyAviasalesTest {
         RoutePage routePage = new RoutePage();
         //Отключить галочку в поле "Открыть Островок! в новой вкладке"
         routePage.checkbox();
+    }
+
+    // Замена городов
+    @Test
+    public void test04ChangeCities () {
+
+        RoutePage routePage = new RoutePage();
+        //Отключить галочку в поле "Открыть Островок! в новой вкладке"
+        routePage.selectRoute("Екатеринбург", "Санкт-Петербург");
     }
 
 }

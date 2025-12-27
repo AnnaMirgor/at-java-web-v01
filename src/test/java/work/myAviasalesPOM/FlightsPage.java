@@ -23,8 +23,7 @@ public class FlightsPage {
 
     @Step("Поиск самого дешёвого рейса с багажом")
     public void findCheapestFlightWithBaggage() {
-        System.out.println("Цена самого дешёвого рейса с багажом: " + this.cheapestWithBaggage.text());
-    }
+        System.out.println("Цена самого дешёвого рейса с багажом: " + this.cheapestWithBaggage.text()); }
 
     @Step("Поиск рекомендованного рейса")
     public void findRecommendedFlight() {
@@ -38,7 +37,6 @@ public class FlightsPage {
     @Step("Поиск самого дешёвого рейса")
     public void withBaggage() {
         this.withBaggage.click();
-        Configuration.timeout = 5_000;
     }
 
 }

@@ -48,7 +48,7 @@ public class DatesPage {
         this.adultsNumbers.click();
     }
 
-    @Step("Выбор пассажиров детей")
+    @Step("Выбор пассажиров от 2 до 12 лет")
     public void selectPassengersChildren() {
         this.childrenNumbers.click();
     }
@@ -56,7 +56,6 @@ public class DatesPage {
     @Step("Поиск билетов")
     public void findTickets() {
         this.buttonFind.click();
-        Configuration.timeout = 20_000;
     }
 
 }
