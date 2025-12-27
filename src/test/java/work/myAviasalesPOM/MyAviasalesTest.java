@@ -76,16 +76,16 @@ public class MyAviasalesTest {
 
         RoutePage routePage = new RoutePage();
         //Выбрать маршрут
-        routePage.choosingRoute("Санкт-Петербург");
+        routePage.selectRoute("Санкт-Петербург");
         sleep(5_000);
         DatesPage datesPage = new DatesPage();
         //Отключить галочку в поле "Открыть Островок! в новой вкладке"
         datesPage.checkbox();
         //Выбрать даты
-        datesPage.choosingDates();
+        datesPage.selectDates();
         //Выбрать количество пассажиров — 2 взрослых и 1 ребёнок
-        datesPage.choosingPassengersAdult();
-        datesPage.choosingPassengersChildren();
+        datesPage.selectPassengersAdult();
+        datesPage.selectPassengersChildren();
         //Нажать кнопку "Найти билеты"
         datesPage.findTickets();
 
@@ -106,11 +106,11 @@ public class MyAviasalesTest {
         //Отключить галочку в поле "Открыть Островок! в новой вкладке"
         routePage.checkbox();
         //Выбрать маршруты
-        routePage.choosingRoute("Москва", "Санкт-Петербург");
+        routePage.selectRoute("Москва", "Санкт-Петербург");
 
         DatesPage datesPage = new DatesPage();
         //Выбрать даты
-        datesPage.choosingDates();
+        datesPage.selectDates();
         //Нажать кнопку "Найти билеты"
         datesPage.findTickets();
 

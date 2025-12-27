@@ -33,7 +33,7 @@ public class DatesPage {
     }
 
     @Step("Выбор дат")
-    public void choosingDates() {
+    public void selectDates() {
         this.startDateField.click();
         this.dateFirst.click();
         this.endDateField.click();
@@ -41,13 +41,13 @@ public class DatesPage {
     }
 
     @Step("Выбор взрослых пассажиров")
-    public void choosingPassengersAdult() {
+    public void selectPassengersAdult() {
         this.passengersNumbers.click();
         this.adultsNumbers.click();
     }
 
     @Step("Выбор пассажиров детей")
-    public void choosingPassengersChildren() {
+    public void selectPassengersChildren() {
         this.childrenNumbers.click();
     }
 

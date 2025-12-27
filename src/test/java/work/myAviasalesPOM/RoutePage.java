@@ -16,7 +16,7 @@ public class RoutePage {
             destination = $("#avia_form_destination-input");
 
     @Step("Выбор городов вылета и прибытия")
-    public void choosingRoute(String origin, String destination) {
+    public void selectRoute(String origin, String destination) {
         this.origin.click();
         this.origin.type(origin);
         this.destination.click();
@@ -25,7 +25,7 @@ public class RoutePage {
     }
 
     @Step("Выбор только города прибытия, если вылет из Москвы")
-    public void choosingRoute(String destination) {
+    public void selectRoute(String destination) {
         this.destination.click();
         this.destination.type(destination);
         //Configuration.timeout = 10_000;
