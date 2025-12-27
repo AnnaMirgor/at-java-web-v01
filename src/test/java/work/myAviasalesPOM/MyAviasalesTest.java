@@ -102,7 +102,7 @@ public class MyAviasalesTest {
         RoutePage routePage = new RoutePage();
         //Выбрать маршрут
         routePage.selectRoute("Казань", "Санкт-Петербург");
-        Configuration.pageLoadTimeout = 15_000;
+        //Configuration.pageLoadTimeout = 15_000;
         DatesPage datesPage = new DatesPage();
         //Отключить галочку в поле "Открыть Островок! в новой вкладке"
         datesPage.checkbox();
@@ -117,10 +117,10 @@ public class MyAviasalesTest {
         FlightsPage flightsPage = new FlightsPage();
         //Найти рейс с отметкой "Самый дешёвый", вывести на консоль цену
         flightsPage.findCheapestFlight();
-        sleep(1_000);
+        //sleep(1_000);
         //Выбрать этот рейс
         flightsPage.selectCheapestFlight();
-        Configuration.pageLoadTimeout = 60_000;
+        //Configuration.pageLoadTimeout = 60_000;
         //Выбрать покупку напрямую у Авиасейлс
         flightsPage.buyTicketsAviasales();
         //sleep(5_000);

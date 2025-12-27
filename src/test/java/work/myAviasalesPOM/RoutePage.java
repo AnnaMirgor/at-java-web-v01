@@ -42,7 +42,10 @@ public class RoutePage {
 
     @Step("Выбор только города прибытия, если вылет из Москвы")
     public void selectRoute(String cityTo) {
-        this.destination.click();
+        this.destination.shouldBe(Condition.interactable, Duration.ofSeconds(30)); // Проверяем, что элемент interactable,
+        // т.е. с ним можно взаимодействовать - добавил, т.к. возникали ошибки, что элемент не interactable
+        this.destination.shouldNotBe(Condition.readonly, Duration.ofSeconds(30)); // Проверяем, что элемент доступен для записи,
+        // т.е. с ним можно взаимодействовать - добавил, т.к. возникали ошибки, что элемент readonly
         this.destination.setValue(cityTo);
         //Configuration.timeout = 10_000;
     }
