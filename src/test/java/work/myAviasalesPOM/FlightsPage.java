@@ -1,8 +1,11 @@
 package work.myAviasalesPOM;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+
+import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$x;
@@ -21,15 +24,27 @@ public class FlightsPage {
 
     @Step("Поиск самого дешёвого рейса")
     public void findCheapestFlight() {
+        this.cheapest.shouldBe(Condition.interactable, Duration.ofSeconds(30)); // Проверяем, что элемент interactable,
+        // т.е. с ним можно взаимодействовать - добавил, т.к. возникали ошибки, что элемент не interactable
+        this.cheapest.shouldNotBe(Condition.readonly, Duration.ofSeconds(30)); // Проверяем, что элемент доступен для записи,
+        // т.е. с ним можно взаимодействовать - добавил, т.к. возникали ошибки, что элемент readonly
         System.out.println("Цена самого дешёвого рейса: " + this.cheapest.text());
     }
 
     @Step("Поиск самого дешёвого рейса с багажом")
     public void findCheapestFlightWithBaggage() {
+        this.cheapestWithBaggage.shouldBe(Condition.interactable, Duration.ofSeconds(30)); // Проверяем, что элемент interactable,
+        // т.е. с ним можно взаимодействовать - добавил, т.к. возникали ошибки, что элемент не interactable
+        this.cheapestWithBaggage.shouldNotBe(Condition.readonly, Duration.ofSeconds(30)); // Проверяем, что элемент доступен для записи,
+        // т.е. с ним можно взаимодействовать - добавил, т.к. возникали ошибки, что элемент readonly
         System.out.println("Цена самого дешёвого рейса с багажом: " + this.cheapestWithBaggage.text()); }
 
     @Step("Поиск рекомендованного рейса")
     public void findRecommendedFlight() {
+        this.recommended.shouldBe(Condition.interactable, Duration.ofSeconds(30)); // Проверяем, что элемент interactable,
+        // т.е. с ним можно взаимодействовать - добавил, т.к. возникали ошибки, что элемент не interactable
+        this.recommended.shouldNotBe(Condition.readonly, Duration.ofSeconds(30)); // Проверяем, что элемент доступен для записи,
+        // т.е. с ним можно взаимодействовать - добавил, т.к. возникали ошибки, что элемент readonly
         System.out.println("Цена рекомендованного рейса: " + this.recommended.text()); }
 
     @Step("Поиск оптимального рейса")
@@ -44,11 +59,19 @@ public class FlightsPage {
 
     @Step("Выбор рейсов с багажом")
     public void withBaggage() {
+        this.withBaggage.shouldBe(Condition.interactable, Duration.ofSeconds(30)); // Проверяем, что элемент interactable,
+        // т.е. с ним можно взаимодействовать - добавил, т.к. возникали ошибки, что элемент не interactable
+        this.withBaggage.shouldNotBe(Condition.readonly, Duration.ofSeconds(30)); // Проверяем, что элемент доступен для записи,
+        // т.е. с ним можно взаимодействовать - добавил, т.к. возникали ошибки, что элемент readonly
         this.withBaggage.click();
     }
 
     @Step("Покупка билетов напрямую у Авиасейлс")
     public void buyTicketsAviasales() {
+        this.buyAviasales.shouldBe(Condition.interactable, Duration.ofSeconds(30)); // Проверяем, что элемент interactable,
+        // т.е. с ним можно взаимодействовать - добавил, т.к. возникали ошибки, что элемент не interactable
+        this.buyAviasales.shouldNotBe(Condition.readonly, Duration.ofSeconds(30)); // Проверяем, что элемент доступен для записи,
+        // т.е. с ним можно взаимодействовать - добавил, т.к. возникали ошибки, что элемент readonly
         this.buyAviasales.click();
     }
 

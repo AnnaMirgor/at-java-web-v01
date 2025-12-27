@@ -75,7 +75,7 @@ public class MyAviasalesTest {
         DatesPage datesPage = new DatesPage();
         //Отключить галочку в поле "Открыть Островок! в новой вкладке"
         datesPage.checkbox();
-        Configuration.pageLoadTimeout = 5_000;
+        Configuration.timeout = 5_000;
         datesPage.checkbox();
         //Выбрать даты
         datesPage.selectDatesDifferent();
@@ -83,11 +83,11 @@ public class MyAviasalesTest {
         datesPage.findTickets();
         //sleep(10_000);
         FlightsPage flightsPage = new FlightsPage();
-        Configuration.pageLoadTimeout = 60_000;
+        Configuration.timeout = 60_000;
         //sleep(20_000);
         //Отфильтровать рейсы с багажом
         flightsPage.withBaggage();
-        Configuration.pageLoadTimeout = 60_000;
+        Configuration.timeout = 60_000;
         //sleep(20_000);
         //Найти рейс с отметкой "Самый дешёвый", вывести на консоль цену
         flightsPage.findCheapestFlightWithBaggage();
