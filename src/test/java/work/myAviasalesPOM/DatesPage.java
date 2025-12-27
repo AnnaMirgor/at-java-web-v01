@@ -1,11 +1,11 @@
 package work.myAviasalesPOM;
 
-import com.codeborne.selenide.Condition;
+//import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
-import java.time.Duration;
+//import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.$x;
 
