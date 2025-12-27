@@ -9,8 +9,8 @@ public class CitySelectorPage {
 //            spb = $x("//button[text()='Санкт-Петербург']"),
 //            msk = $x("//button[text()='Москва']"),
 //            vnov = $x("//button[text()='Великий Новгород']");
-        SelenideElement
-                container = $x("//div[@class='citySelector__container']");
+    SelenideElement
+            container = $x("//div[@class='citySelector__container']");
 
 //    public void spb(){
 //        this.spb.click();
@@ -25,8 +25,7 @@ public class CitySelectorPage {
 //    }
 
     public void selectCity(String city){
-        this.container.click();
-        System.out.println("Выбрать город");
-
+        $x("//button[text()='" + city + "']").click();
+        System.out.println("Выбрали город " + $x("//div[@class='whatCity__name']").text());
     }
 }
