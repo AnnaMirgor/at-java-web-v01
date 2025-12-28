@@ -53,9 +53,7 @@ public class RoutePage {
 
     @Step("Выбор только города прибытия, если вылет из Москвы")
     public void selectRouteDiv(String cityTo) {
-        this.destinationDiv.setValue(cityTo);
-    }
-
+        this.destinationDiv.setValue(cityTo);}
 
     @Step("Чекбокс Островок")
     public void checkbox() {
