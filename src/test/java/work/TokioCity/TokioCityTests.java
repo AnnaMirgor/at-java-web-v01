@@ -44,8 +44,10 @@ public class TokioCityTests {
         citySelectorPage.selectCity("Санкт-Петербург");
         //Выбрать пиццу Питерскую
         MenuPage menuPage = new MenuPage();
+        menuPage.downloadPanel();
+        menuPage.cookieAlert();
         menuPage.selectCategory("Пицца");
-        menuPage.addItemToBasket("Гирос Лосось");
+        menuPage.addItemToBasket("Пицца Питерская");
         menuPage.selectCategory("Супы");
         menuPage.addItemToBasket("Рамен");
         menuPage.selectCategory("Роллы");
@@ -53,4 +55,25 @@ public class TokioCityTests {
         sleep(5_000);
     }
 
+    // 3. Октрыть категорию
+    @Test
+    public void selectCategory02 () {
+        //Выбрать город Санкт-Петербург
+        CitySelectorPage citySelectorPage = new CitySelectorPage();
+        citySelectorPage.selectCity("Санкт-Петербург");
+        //Выбрать пиццу Питерскую
+        MenuPage menuPage = new MenuPage();
+        menuPage.downloadPanel();
+        menuPage.cookieAlert();
+        $x("//div[@class='navbar']//span[contains(text(), 'Пицца')]")
+                .shouldBe(Condition.interactable, Duration.ofSeconds(30));
+        // Проверяем, что элемент interactable,
+        //т.е. с ним можно взаимодействовать - добавил, т.к. возникали ошибки, что элемент не interactable
+        $x("//div[@class='navbar']//span[contains(text(), 'Пицца')]")
+                .shouldNotBe(Condition.readonly, Duration.ofSeconds(30));
+        // Проверяем, что элемент доступен для записи,
+        //т.е. с ним можно взаимодействовать - добавил, т.к. возникали ошибки, что элемент readonly
+        $x("//div[@class='navbar']//span[contains(text(), 'Пицца')]").click();
+        System.out.println("Выбрали категорию меню: " + $x("//span[@class= 'breadcrumbs__item']").text());
+    }
 }
