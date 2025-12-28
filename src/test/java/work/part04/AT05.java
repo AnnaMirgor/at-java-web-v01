@@ -134,10 +134,11 @@ public class AT05 {
     public void aviasalesEdge () {
 
         Configuration.pageLoadStrategy = "eager";
-        Configuration.browser = "edge";
+        Configuration.browser = "ie";
         sleep(5_000);
         //Открыть сайт — не работает!!!
         open("https://www.aviasales.ru/");
+        sleep(50000);
     }
 
 }

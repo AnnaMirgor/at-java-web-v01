@@ -15,7 +15,8 @@ public class RoutePage {
     SelenideElement
             checkbox = $x("//span[@class='s__u1BTPMyjvYPx48Gd']"),
             origin = $("#avia_form_origin-input"),
-            destination = $("#avia_form_destination-input");
+            destination = $("#avia_form_destination-input"),
+            destinationDiv = $x("//div[@data-test-id='destination-autocomplete']");
 
     @Step("Выбор маршрута")
     public void selectRoute(String cityFrom, String cityTo) {
@@ -29,7 +30,7 @@ public class RoutePage {
             sleep(1_000);
             this.origin.click(); // Если кликнуть по этому полю, а потом перед тем, как присваивать значение очистить его,
             // то через какое-то время поле приходит в состояние, когда ему можно присвоить значение, которое требуется
-            this.origin.setValue("").setValue(cityFrom);
+            this.origin.setValue("").type(cityFrom);
         }
         sleep(1_000);
         this.destination.shouldBe(Condition.interactable, Duration.ofSeconds(30)); // Проверяем, что элемент interactable,
@@ -46,8 +47,13 @@ public class RoutePage {
         // т.е. с ним можно взаимодействовать - добавил, т.к. возникали ошибки, что элемент не interactable
         this.destination.shouldNotBe(Condition.readonly, Duration.ofSeconds(30)); // Проверяем, что элемент доступен для записи,
         // т.е. с ним можно взаимодействовать - добавил, т.к. возникали ошибки, что элемент readonly
-        this.destination.setValue(cityTo);
+        this.destination.type(cityTo);
         //Configuration.timeout = 10_000;
+    }
+
+    @Step("Выбор только города прибытия, если вылет из Москвы")
+    public void selectRouteDiv(String cityTo) {
+        this.destinationDiv.setValue(cityTo);
     }
 
     @Step("Чекбокс Островок")
