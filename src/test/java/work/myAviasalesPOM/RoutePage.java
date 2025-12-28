@@ -56,6 +56,7 @@ public class RoutePage {
         this.destinationDiv.setValue(cityTo);
     }
 
+
     @Step("Чекбокс Островок")
     public void checkbox() {
         this.checkbox.shouldBe(Condition.interactable, Duration.ofSeconds(30)); // Проверяем, что элемент interactable,
