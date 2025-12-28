@@ -130,15 +130,4 @@ public class AT05 {
         $x("//div[@data-test-id='dropdown']").shouldBe(visible);
     }
 
-    @Test
-    public void aviasalesEdge () {
-
-        Configuration.pageLoadStrategy = "eager";
-        Configuration.browser = "ie";
-        sleep(5_000);
-        //Открыть сайт — не работает!!!
-        open("https://www.aviasales.ru/");
-        sleep(50000);
-    }
-
 }
